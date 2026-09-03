@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#120b2e">
+<title>张旭 · 生日快乐 🎂</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  color:#fff;background:#090616;
+}
+.page{
+  position:relative;width:100%;height:100%;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(255,105,180,.25),transparent 35%),
+    radial-gradient(circle at 20% 80%,rgba(95,70,255,.25),transparent 35%),
+    linear-gradient(145deg,#090616,#17103b 55%,#0b1835);
+}
+.stars,.stars:before,.stars:after{
+  position:absolute;inset:0;content:"";pointer-events:none;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.85) 0 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(255,220,150,.7) 0 1px,transparent 1.5px);
+  background-size:83px 97px,131px 149px;
+  background-position:10px 20px,40px 70px;
+  animation:twinkle 4s ease-in-out infinite alternate;
+}
+.stars:before{opacity:.45;transform:scale(1.3);animation-duration:6s}
+.stars:after{opacity:.25;transform:scale(.8);animation-duration:3s}
+@keyframes twinkle{from{opacity:.25}to{opacity:.9}}
+
+.card{
+  position:relative;z-index:3;width:min(90%,520px);padding:38px 24px 34px;
+  text-align:center;border:1px solid rgba(255,255,255,.18);
+  border-radius:30px;background:rgba(255,255,255,.09);
+  box-shadow:0 20px 80px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.16);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.badge{
+  display:inline-block;padding:7px 13px;border-radius:999px;
+  background:rgba(255,215,110,.13);border:1px solid rgba(255,215,110,.35);
+  color:#ffe59b;font-size:13px;letter-spacing:2px;margin-bottom:18px;
+}
+h1{
+  margin:0;font-size:clamp(38px,11vw,64px);line-height:1.08;
+  letter-spacing:2px;font-weight:900;
+  background:linear-gradient(90deg,#fff,#ffd86e,#ff9fbe,#fff);
+  background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 4s linear infinite;
+}
+@keyframes shine{to{background-position:300% center}}
+.name{font-size:clamp(28px,8vw,42px);font-weight:800;margin:8px 0 20px;color:#fff}
+.message{font-size:17px;line-height:1.9;color:rgba(255,255,255,.9);margin:0 auto;max-width:390px}
+.highlight{color:#ffd86e;font-weight:800}
+.cake{font-size:78px;line-height:1;margin:18px 0 12px;filter:drop-shadow(0 8px 20px rgba(255,180,80,.3));animation:bounce 1.8s ease-in-out infinite}
+@keyframes bounce{50%{transform:translateY(-8px) scale(1.04)}}
+.hint{
+  margin-top:24px;padding:13px 16px;border-radius:16px;
+  background:rgba(255,255,255,.08);color:#fff;font-size:14px;
+  animation:pulse 1.8s infinite;
+}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(255,255,255,.03)}}
+
+.balloon{position:absolute;z-index:1;font-size:48px;animation:float 6s ease-in-out infinite}
+.b1{left:4%;top:12%;animation-delay:-1s}.b2{right:5%;top:18%;animation-delay:-3s}
+.b3{left:7%;bottom:13%;animation-delay:-2s}.b4{right:7%;bottom:10%;animation-delay:-4s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-28px) rotate(5deg)}}
+
+.confetti{position:absolute;z-index:5;width:9px;height:15px;top:-30px;border-radius:2px;animation:fall 3.5s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+.overlay{
+  position:fixed;inset:0;z-index:20;background:rgba(5,2,15,.9);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:28px;transition:opacity .45s,visibility .45s;
+}
+.overlay.hide{opacity:0;visibility:hidden}
+.start{
+  width:min(88%,420px);padding:34px 25px;border-radius:28px;
+  background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.06));
+  border:1px solid rgba(255,255,255,.2);box-shadow:0 20px 70px rgba(0,0,0,.45);
+}
+.start .big{font-size:62px}.start h2{margin:10px 0;font-size:27px}
+.start p{color:rgba(255,255,255,.75);line-height:1.7;font-size:14px}
+button{
+  border:0;border-radius:999px;padding:15px 30px;margin-top:10px;
+  color:#241300;font-weight:900;font-size:17px;
+  background:linear-gradient(90deg,#ffd86e,#ff9fbe);
+  box-shadow:0 10px 30px rgba(255,170,120,.25);
+}
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translateX(-50%);
+  z-index:30;padding:11px 17px;border-radius:999px;background:rgba(0,0,0,.65);
+  color:#fff;font-size:13px;opacity:0;transition:.3s;white-space:nowrap
+}
+.toast.show{opacity:1}
+#filePicker{display:none}
+.music-btn{
+  position:absolute;right:16px;top:16px;z-index:10;width:42px;height:42px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.1);color:#fff;font-size:18px
+}
+</style>
+</head>
+<body>
+<div class="page" id="page">
+  <div class="stars"></div>
+  <div class="balloon b1">🎈</div><div class="balloon b2">🎈</div>
+  <div class="balloon b3">🎈</div><div class="balloon b4">🎈</div>
+
+  <button class="music-btn" id="musicBtn" aria-label="音乐">🔇</button>
+
+  <main class="card">
+    <div class="badge">TODAY IS YOUR DAY ✨</div>
+    <h1>张旭</h1>
+    <div class="name">生日快乐！🎉</div>
+    <div class="cake">🎂</div>
+    <p class="message">
+      愿你新的一岁<br>
+      <span class="highlight">有钱、有闲、有快乐</span><br>
+      想吃就吃，想玩就玩，想干啥就干啥！<br>
+      愿所有好运都准时到账，<br>
+      <b>兄弟，生日快乐，天天开心！🍻</b>
+    </p>
+    <div class="hint" id="hint">点击屏幕，惊喜继续 🎁</div>
+  </main>
+
+  <div class="overlay" id="overlay">
+    <div class="start">
+      <div class="big">🎂</div>
+      <h2>张旭，准备好了吗？</h2>
+      <p>今天主角就是你。<br>点击下面按钮，生日祝福马上开始！</p>
+      <button id="startBtn">🎉 开始生日惊喜</button>
+      <p style="margin-top:18px;font-size:12px;opacity:.55">
+        音乐提示：微信浏览器需要首次点击后才能播放声音。
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!--
+  如果你有合法/获授权的生日歌音频：
+  1. 将音频文件与本 HTML 放在同一目录
+  2. 音频文件名保持为“生日祝福歌 - 格格.mp3”
+  3. 页面会在点击“开始生日惊喜”后播放该音乐。
+  由于微信/浏览器的自动播放限制，必须先点击“开始生日惊喜”。
+-->
+<audio id="song" src="生日祝福歌 - 格格.mp3" loop preload="auto"></audio>
+
+<script>
+const page=document.getElementById('page');
+const overlay=document.getElementById('overlay');
+const startBtn=document.getElementById('startBtn');
+const musicBtn=document.getElementById('musicBtn');
+const hint=document.getElementById('hint');
+const toast=document.getElementById('toast');
+
+let audio=null, musicOn=false, started=false, ctx=null, gain=null, timer=null;
+
+// 如果同目录存在 birthday.mp3，则自动尝试使用它。
+// 没有音频时，会播放一个轻快的“生日祝福”电子伴奏作为备用。
+function setupAudio(){
+  audio=document.getElementById('song');
+  if(audio) return;
+  audio=new Audio('birthday.mp3');
+  audio.loop=true;
+  audio.preload='auto';
+}
+
+function fallbackMusic(){
+  if(ctx) return;
+  ctx=new (window.AudioContext||window.webkitAudioContext)();
+  gain=ctx.createGain(); gain.gain.value=.055; gain.connect(ctx.destination);
+  const notes=[523.25,523.25,587.33,523.25,698.46,659.25,523.25,523.25,587.33,523.25,783.99,698.46];
+  let i=0;
+  const play=()=>{
+    if(!ctx||!musicOn)return;
+    const osc=ctx.createOscillator(), g=ctx.createGain();
+    osc.type='sine'; osc.frequency.value=notes[i++%notes.length];
+    g.gain.setValueAtTime(.0001,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.5,ctx.currentTime+.03);
+    g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+.38);
+    osc.connect(g);g.connect(gain);osc.start();osc.stop(ctx.currentTime+.4);
+    timer=setTimeout(play,420);
+  };
+  play();
+}
+
+async function startMusic(){
+  setupAudio();
+  try{
+    await audio.play();
+    musicOn=true; musicBtn.textContent='🎵';
+  }catch(e){
+    try{
+      fallbackMusic(); musicOn=true; musicBtn.textContent='🎵';
+    }catch(err){}
+  }
+}
+
+function stopMusic(){
+  if(audio){audio.pause();audio.currentTime=0}
+  if(ctx){ctx.suspend()}
+  musicOn=false;musicBtn.textContent='🔇';
+}
+
+function confetti(n=70){
+  for(let i=0;i<n;i++){
+    const c=document.createElement('i');c.className='confetti';
+    c.style.left=Math.random()*100+'vw';
+    c.style.animationDelay=(Math.random()*1.5)+'s';
+    c.style.transform='rotate('+Math.random()*360+'deg)';
+    c.style.background=['#ffd86e','#ff7aa8','#8ee8ff','#b6ff9e','#c5a7ff'][Math.floor(Math.random()*5)];
+    c.style.width=(6+Math.random()*7)+'px';
+    c.style.height=(9+Math.random()*10)+'px';
+    page.appendChild(c);
+    setTimeout(()=>c.remove(),5200);
+  }
+}
+function showToast(t){
+  toast.textContent=t;toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),2200);
+}
+
+startBtn.addEventListener('click',async()=>{
+  started=true;overlay.classList.add('hide');confetti(100);
+  hint.textContent='🎵 生日祝福歌已准备好 · 再点一下屏幕还有惊喜';
+  await startMusic();
+  showToast('生日快乐，张旭！🎂');
+});
+
+musicBtn.addEventListener('click',async(e)=>{
+  e.stopPropagation();
+  if(!started)return;
+  if(musicOn)stopMusic();else await startMusic();
+});
+
+page.addEventListener('click',async(e)=>{
+  if(!started || e.target===musicBtn)return;
+  confetti(18);
+  const lines=[
+    '兄弟，愿你暴富！💰',
+    '愿你每天都有好心情！😎',
+    '愿好运一直追着你跑！🍀',
+    '愿新的一岁，快乐翻倍！🎉',
+    '张旭，今天你最大！👑'
+  ];
+  showToast(lines[Math.floor(Math.random()*lines.length)]);
+});
+</script>
+</body>
+</html>
